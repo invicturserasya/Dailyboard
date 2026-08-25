@@ -6,8 +6,7 @@
 }
 
 html, body {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
   background: #f4f4f4;
   color: #222;
@@ -16,14 +15,13 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 header, footer {
   background: #2563eb;
   color: white;
   text-align: center;
-  padding: 8px 15px;
+  padding: 10px 15px;
   flex-shrink: 0;
 }
 
@@ -39,44 +37,33 @@ main#app {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto 1fr auto;
-  gap: 8px;
-  padding: 5px 10px;
+  gap: 10px;
+  padding: 15px;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  overflow: hidden;
 }
 
-/* Merapatkan jarak kosong di bawah judul header */
+/* Merapatkan jarak di bawah judul */
 main#app > div[style*="text-align: center"] {
-  padding: 8px 0 !important;
+  grid-column: span 3;
+  padding: 5px 0 !important;
   margin-bottom: -5px;
 }
 
 main#app > button {
   grid-column: span 3;
   justify-self: end;
-  padding: 4px 10px;
+  padding: 6px 12px;
   font-size: 0.85rem;
-}
-
-main#app > div {
-  grid-column: span 3;
-  padding: 4px !important;
-}
-
-main#app > div h1 {
-  font-size: 1.2rem;
 }
 
 section {
   background: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -87,13 +74,12 @@ section {
 
 section h2 {
   font-size: 0.95rem;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 ul, section > div:last-child {
+  max-height: 200px;
   overflow-y: auto;
-  flex: 1;
-  max-height: 100%;
 }
 
 .kutipan-header {
@@ -105,7 +91,7 @@ ul, section > div:last-child {
 
 input, textarea, button {
   padding: 6px;
-  margin: 2px 0;
+  margin: 3px 0;
   font-size: 0.85rem;
 }
 
@@ -117,7 +103,7 @@ input, textarea {
 
 textarea {
   resize: none;
-  height: 45px;
+  height: 50px;
 }
 
 button {
@@ -167,11 +153,9 @@ button:hover {
 @media (max-width: 768px) {
   main#app {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    overflow-y: auto;
   }
 
-  .kutipan-section, main#app > button, main#app > div {
+  .kutipan-section, main#app > button, main#app > div[style*="text-align: center"] {
     grid-column: span 1;
   }
 }
