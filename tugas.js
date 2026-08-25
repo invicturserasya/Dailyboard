@@ -1,3 +1,4 @@
+// Manajemen Tugas lalu simpan
 import { simpanKeStorage } from "./storage.js";
 
 export function tambahTugas(daftar, nama, id) {
