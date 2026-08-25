@@ -1,3 +1,4 @@
+// Modul API Cuaca dan Quote
 export async function ambilKutipan() {
   try {
     const res = await fetch("https://dummyjson.com/quotes/random");
