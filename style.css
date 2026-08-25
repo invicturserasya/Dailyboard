@@ -39,7 +39,7 @@ main#app {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr auto;
   gap: 10px;
   padding: 10px;
   max-width: 1200px;
@@ -74,7 +74,8 @@ section {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-section:nth-of-type(1) {
+/* Mengatur Kata-kata Hari Ini di paling bawah dan melebar penuh */
+.kutipan-section {
   grid-column: span 3;
 }
 
@@ -164,7 +165,7 @@ button:hover {
     overflow-y: auto;
   }
 
-  section:nth-of-type(1), main#app > button, main#app > div {
+  .kutipan-section, main#app > button, main#app > div {
     grid-column: span 1;
   }
 }

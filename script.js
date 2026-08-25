@@ -25,7 +25,7 @@ statusLoading.style.fontWeight = "bold";
 headerBanner.append(judulSelamatDatang, statusLoading);
 app.appendChild(headerBanner);
 
-// Buat Section Tugas, Catatan, dan Cuaca
+// Buat Section 3 Utama (Tugas, Catatan, Cuaca)
 const tugasSection = document.createElement("section");
 const catatanSection = document.createElement("section");
 const cuacaSection = document.createElement("section");
@@ -34,11 +34,13 @@ tugasSection.innerHTML = "<h2> Daftar Tugas</h2>";
 catatanSection.innerHTML = "<h2> Catatan</h2>";
 cuacaSection.innerHTML = "<h2> Cuaca</h2>";
 
-// Masukkan 3 Section Utama terlebih dahulu ke tampilan
+// Masukkan 3 Section Utama ke grid
 app.append(tugasSection, catatanSection, cuacaSection);
 
-// Kutipan Hari Ini (Disiapkan untuk ditaruh di bawah)
+// Section Kata-kata Hari Ini (Dipasang paling bawah)
 const kutipanSection = document.createElement("section");
+kutipanSection.className = "kutipan-section"; // class khusus untuk CSS
+
 const kutipanHeader = document.createElement("div");
 const judulKutipan = document.createElement("h2");
 const kutipanHarian = document.createElement("p");
@@ -54,7 +56,7 @@ kutipanHeader.className = "kutipan-header";
 kutipanHeader.append(judulKutipan, btnGantiKutipan);
 kutipanSection.append(kutipanHeader, kutipanHarian);
 
-// Masukkan Kata-kata Hari Ini ke bagian PALING BAWAH
+// Masukkan di akhir
 app.appendChild(kutipanSection);
 
 btnGantiKutipan.onclick = () => ambilKutipan();
