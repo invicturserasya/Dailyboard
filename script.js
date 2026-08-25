@@ -1,4 +1,4 @@
-// Script Utama Aplikasi
+// Script Utama Aplikasi.
 import { ambilKutipan, ambilCuaca } from "./api.js";
 import { simpanKeStorage, muatDariStorage, muatCatatanStorage, simpanCatatanStorage } from "./storage.js";
 import { tambahTugas } from "./tugas.js";
