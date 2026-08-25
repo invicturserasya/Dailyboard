@@ -1,4 +1,7 @@
-// tugas.js
-export function tambahTugas(daftar, nama) {
-  return [...daftar, { id: Date.now(), nama, selesai: false }];
+import { simpanKeStorage } from "./storage.js";
+
+export function tambahTugas(daftar, nama, id) {
+  const baru = [...daftar, { id: id, nama: nama, selesai: false }];
+  simpanKeStorage(baru);
+  return baru;
 }
