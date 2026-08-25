@@ -40,12 +40,18 @@ main#app {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto 1fr auto;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 5px 10px;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   overflow: hidden;
+}
+
+/* Merapatkan jarak kosong di bawah judul header */
+main#app > div[style*="text-align: center"] {
+  padding: 8px 0 !important;
+  margin-bottom: -5px;
 }
 
 main#app > button {
