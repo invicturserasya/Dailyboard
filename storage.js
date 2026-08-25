@@ -1,3 +1,4 @@
+// LocalStorage
 const tugasAwal = [
   { id: 1, nama: "Belajar JavaScript", selesai: false },
   { id: 2, nama: "Mengerjakan tugas", selesai: false }
