@@ -25,7 +25,19 @@ statusLoading.style.fontWeight = "bold";
 headerBanner.append(judulSelamatDatang, statusLoading);
 app.appendChild(headerBanner);
 
-// Kutipan Hari Ini
+// Buat Section Tugas, Catatan, dan Cuaca
+const tugasSection = document.createElement("section");
+const catatanSection = document.createElement("section");
+const cuacaSection = document.createElement("section");
+
+tugasSection.innerHTML = "<h2> Daftar Tugas</h2>";
+catatanSection.innerHTML = "<h2> Catatan</h2>";
+cuacaSection.innerHTML = "<h2> Cuaca</h2>";
+
+// Masukkan 3 Section Utama terlebih dahulu ke tampilan
+app.append(tugasSection, catatanSection, cuacaSection);
+
+// Kutipan Hari Ini (Disiapkan untuk ditaruh di bawah)
 const kutipanSection = document.createElement("section");
 const kutipanHeader = document.createElement("div");
 const judulKutipan = document.createElement("h2");
@@ -41,19 +53,11 @@ btnGantiKutipan.type = "button";
 kutipanHeader.className = "kutipan-header";
 kutipanHeader.append(judulKutipan, btnGantiKutipan);
 kutipanSection.append(kutipanHeader, kutipanHarian);
+
+// Masukkan Kata-kata Hari Ini ke bagian PALING BAWAH
 app.appendChild(kutipanSection);
 
 btnGantiKutipan.onclick = () => ambilKutipan();
-
-const tugasSection = document.createElement("section");
-const catatanSection = document.createElement("section");
-const cuacaSection = document.createElement("section");
-
-tugasSection.innerHTML = "<h2> Daftar Tugas</h2>";
-catatanSection.innerHTML = "<h2> Catatan</h2>";
-cuacaSection.innerHTML = "<h2> Cuaca</h2>";
-
-app.append(tugasSection, catatanSection, cuacaSection);
 
 // Input & Filter Tugas
 const inputTugas = document.createElement("input");
