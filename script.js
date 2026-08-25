@@ -177,49 +177,62 @@ function renderTugas() {
 
     // Nama tugas
     const nama = document.createElement("span");
-
     nama.textContent = tugas.nama;
+    nama.title = "Double klik untuk merubah";
 
     if (tugas.selesai) {
       nama.classList.add("selesai");
     }
 
+    // Edit langsung via Double Klik
+    nama.ondblclick = (e) => {
+      e.stopPropagation();
+      const inputEdit = document.createElement("input");
+      inputEdit.type = "text";
+      inputEdit.value = tugas.nama;
+      inputEdit.style.fontSize = "inherit";
+
+      const simpanPerubahan = () => {
+        const namaBaru = inputEdit.value.trim();
+        if (namaBaru) {
+          tugas.nama = namaBaru;
+          simpanTugas();
+        }
+        renderTugas();
+      };
+
+      inputEdit.onblur = simpanPerubahan;
+      inputEdit.onkeydown = (ev) => {
+        if (ev.key === "Enter") simpanPerubahan();
+        if (ev.key === "Escape") renderTugas();
+      };
+
+      li.replaceChild(inputEdit, nama);
+      inputEdit.focus();
+    };
+
     // Tombol Ubah
     const btnUbah = document.createElement("button");
-
     btnUbah.textContent = "Ubah";
 
     btnUbah.onclick = () => {
-      const namaBaru = prompt("Ubah tugas:", tugas.nama);
-
-      if (!namaBaru || namaBaru.trim() === "") {
-        return;
-      }
-
-      tugas.nama = namaBaru.trim();
-
-      simpanTugas();
-      renderTugas();
+      nama.dispatchEvent(new Event("dblclick"));
     };
 
     // Tombol Hapus
     const btnHapus = document.createElement("button");
-
     btnHapus.textContent = "Hapus";
 
     btnHapus.onclick = () => {
       const yakin = confirm("Yakin ingin menghapus tugas ini?");
-
       if (!yakin) return;
 
       daftarTugas = daftarTugas.filter((item) => item.id !== tugas.id);
-
       simpanTugas();
       renderTugas();
     };
 
     li.append(nama, btnUbah, btnHapus);
-
     listTugas.appendChild(li);
   });
 }
@@ -257,7 +270,7 @@ btnTambah.onclick = () => {
 // ==================================================
 
 listTugas.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON") {
+  if (e.target.tagName === "BUTTON" || e.target.tagName === "INPUT") {
     return;
   }
 
@@ -267,10 +280,11 @@ listTugas.addEventListener("click", (e) => {
 
   const tugas = daftarTugas.find((t) => t.id === Number(li.dataset.id));
 
-  tugas.selesai = !tugas.selesai;
-
-  simpanTugas();
-  renderTugas();
+  if (tugas) {
+    tugas.selesai = !tugas.selesai;
+    simpanTugas();
+    renderTugas();
+  }
 });
 
 // ==================================================
@@ -330,7 +344,7 @@ listTugas.addEventListener("drop", (e) => {
 
 // ==================================================
 // CATATAN
-// Fase 3 — LocalStorage dan Catatan: Menambah catatan harian.
+// Fase 3 — LocalStorage dan Catatan: Menambah dan Mengubah catatan.
 // ==================================================
 
 const inputCatatan = document.createElement("textarea");
@@ -351,25 +365,59 @@ function renderCatatan() {
   daftarCatatan.innerHTML = "";
 
   catatan.forEach((item, index) => {
-    const p = document.createElement("p");
+    const wrapper = document.createElement("div");
+    wrapper.style.marginBottom = "6px";
 
-    p.textContent = "📌 " + item;
+    const teks = document.createElement("span");
+    teks.textContent = "📌 " + item + " ";
+    teks.style.cursor = "pointer";
+    teks.title = "Double klik untuk merubah";
 
+    // Edit langsung via Double Klik
+    teks.ondblclick = () => {
+      const inputEdit = document.createElement("input");
+      inputEdit.type = "text";
+      inputEdit.value = item;
+
+      const simpanPerubahan = () => {
+        const catatanBaru = inputEdit.value.trim();
+        if (catatanBaru) {
+          catatan[index] = catatanBaru;
+          localStorage.setItem("catatan", JSON.stringify(catatan));
+        }
+        renderCatatan();
+      };
+
+      inputEdit.onblur = simpanPerubahan;
+      inputEdit.onkeydown = (ev) => {
+        if (ev.key === "Enter") simpanPerubahan();
+        if (ev.key === "Escape") renderCatatan();
+      };
+
+      wrapper.replaceChild(inputEdit, teks);
+      inputEdit.focus();
+    };
+
+    // Tombol Ubah
+    const btnUbah = document.createElement("button");
+    btnUbah.textContent = "Ubah";
+
+    btnUbah.onclick = () => {
+      teks.dispatchEvent(new Event("dblclick"));
+    };
+
+    // Tombol Hapus
     const hapus = document.createElement("button");
-
     hapus.textContent = "Hapus";
 
     hapus.onclick = () => {
       catatan.splice(index, 1);
-
       localStorage.setItem("catatan", JSON.stringify(catatan));
-
       renderCatatan();
     };
 
-    p.appendChild(hapus);
-
-    daftarCatatan.appendChild(p);
+    wrapper.append(teks, btnUbah, hapus);
+    daftarCatatan.appendChild(wrapper);
   });
 }
 
