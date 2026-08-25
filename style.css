@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header, footer {
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 8px 15px;
+  flex-shrink: 0;
+}
+
+header h1 {
+  font-size: 1.2rem;
+}
+
+footer p {
+  font-size: 0.8rem;
+}
+
+main#app {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+main#app > button {
+  grid-column: span 3;
+  justify-self: end;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+}
+
+main#app > div {
+  grid-column: span 3;
+  padding: 4px !important;
+}
+
+main#app > div h1 {
+  font-size: 1.2rem;
+}
+
+section {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+section:nth-of-type(1) {
+  grid-column: span 3;
+}
+
+section h2 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+ul, section > div:last-child {
+  overflow-y: auto;
+  flex: 1;
+  max-height: 100%;
+}
+
+.kutipan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+input, textarea, button {
+  padding: 6px;
+  margin: 2px 0;
+  font-size: 0.85rem;
+}
+
+input, textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+  height: 45px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.tugas-item {
+  cursor: grab;
+  padding: 6px 8px;
+  margin: 3px 0;
+  background: #eee;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.tugas-item:active {
+  cursor: grabbing;
+}
+
+.selesai {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.dark-mode {
+  background: #111827;
+  color: white;
+}
+
+.dark-mode section {
+  background: #1f2937;
+}
+
+.dark-mode .tugas-item {
+  background: #374151;
+}
+
+@media (max-width: 768px) {
+  main#app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    overflow-y: auto;
+  }
+
+  section:nth-of-type(1), main#app > button, main#app > div {
+    grid-column: span 1;
+  }
+}
