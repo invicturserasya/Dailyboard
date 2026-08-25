@@ -1,4 +1,5 @@
-import { simpanCatatanStorage } from "./storage.js";
+
+// Manajemen Catatanimport { simpanCatatanStorage } from "./storage.js";
 
 export function tambahCatatan(catatanList, teks) {
   catatanList.push(teks);
