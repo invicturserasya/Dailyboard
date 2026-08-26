@@ -1,1 +1,1 @@
-
+import{simpanKeStorage}from"./storage.js";export function tambahTugas(a,e,t){const o=[...a,{id:t,nama:e,selesai:!1}];return simpanKeStorage(o),o}
